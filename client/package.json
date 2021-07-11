@@ -1,0 +1,58 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://127.0.0.1:8000",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@withvoid/melting-pot": "^1.6.0",
+    "firebase": "^8.7.0",
+    "jquery": "^3.6.0",
+    "moment": "^2.29.1",
+    "query-string": "^7.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-firebase-hooks": "^3.0.4",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-scroll-to-bottom": "^4.1.2",
+    "react-toastify": "^7.0.4",
+    "react-use-localstorage": "^3.5.3",
+    "reactstrap": "^8.9.0",
+    "simple-peer": "9.6.2",
+    "socket.io-client": "^2.3.0",
+    "styled-components": "^5.1.0",
+    "tailwindcss": "^2.2.4",
+    "use-clippy": "^1.0.8",
+    "use-immer": "^0.6.0",
+    "use-socket.io-client": "^1.1.0",
+    "uuid": "^7.0.3"
+  },
+  "scripts": {
+    "start": "npm start",
+    "build": "npm build",
+    "eject": "npm eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

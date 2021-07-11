@@ -1,0 +1,36 @@
+
+.VClogin{
+    text-align: left;
+    margin-top: 200px;
+    font-size: large;
+}
+.Chatlogin{
+    text-align: left;
+    font-size: large;
+
+}
+.chat-button {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #1a6eff;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    border: none;
+    width: 10px;
+    margin-left: 30px;
+}
+.b{
+    min-height: 800px;
+    background-image:url('https://microsoft.acehacker.com/engage2021/img/demo-content/images/scrum_programmer.png');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 20px;
+    background-size: 70vh;
+    margin-right: 100px;
+
+}
+#profile{
+    
+}

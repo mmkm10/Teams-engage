@@ -1,0 +1,60 @@
+#BTN{
+    margin-left: 1000px;
+    margin-top: 200px;
+
+}
+.chat-button {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #1a6eff;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    border: none;
+    width: 20%;
+    margin-left: 30px;
+}
+.mute {
+    display: inline-block;
+    justify-self: center;
+    text-align: right;
+    background-color: wheat;
+    height:50px;
+    width: 80px;
+    margin-left: 20px;
+}
+
+.unmute{
+    display: inline-block;
+
+    background-color: red;
+    height:50px;
+    width: 80px;
+    background-position-x: 100px;
+    margin-left: 20px;
+
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 80vh 80vh;
+    grid-gap: 10px;
+
+  }
+  
+  .grid-container > div {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 30px;
+    transform: scale(150%);
+
+  }
+.Container {
+    padding: 20px;
+    height: 40vh;
+    width: 50vw;
+    margin-left: 380px;
+}
+
+
