@@ -1,8 +1,8 @@
 import React from "react";
 import "./Home.css"
 import Login from './Login';
+
 import Segment from '../Segment/segment'
-import { useAuth0 } from '@auth0/auth0-react';
 import {myFirebase, myFirestore} from '../../Config/MyFirebase'
 
 const auth=myFirebase.auth();
