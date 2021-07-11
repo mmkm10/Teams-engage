@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import Peer from "simple-peer";
 import styled from "styled-components";
-import sharescreen from './share';
 import './video.css';
 
 
@@ -38,6 +37,7 @@ const Constraints = {
 
 const Room = (props) => {
     const [peers, setPeers] = useState([]);
+   // const socketServer=io("")
     const socketRef = useRef();
     const userVideo = useRef();
     const peersRef = useRef([]);
@@ -45,7 +45,7 @@ const Room = (props) => {
     const [cam, setCam] = useState(true);
     const [mute, setMute] = useState(true);
     useEffect(() => {
-        socketRef.current = io.connect("/");
+        socketRef.current = io.connect("https://teams-engage.herokuapp.com/");
         navigator.mediaDevices.getUserMedia(Constraints).then(stream => {
             userVideo.current.srcObject = stream;
 
