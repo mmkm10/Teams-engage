@@ -18,14 +18,14 @@ Demo : **[here](https://engage-29989.web.app/)**
  #### for server side
  cd server
  npm i
- nodemon server.js (will run at http://localhost:8000)
+ nodemon server.js (will run at [http://localhost:8000])
  ##### for client-side
  cd client
  npm i
  npm start
- then check https:/localhost:3000
+ then check [https:/localhost:3000]
  
  
 
-### Preview
+
 
