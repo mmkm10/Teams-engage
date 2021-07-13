@@ -17,7 +17,6 @@ function Chat() {
 
   const [user] = useAuthState(auth);
   const history = useHistory();
-  //const [currentRoom]=useState(window.location.href);
   const [showPopup, setShowPopup] = useState("true");
 
 
@@ -26,7 +25,7 @@ function Chat() {
   return (
     <div className="app">
       <header>
-        {!showPopup && <Popup />}
+        {!showPopup && <Popup />}           
 
         {user ? <button onClick={() => setShowPopup(!showPopup)}>VIDEO</button>
           : null}

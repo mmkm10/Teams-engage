@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { myFirebase, myFirestore } from '../../Config/MyFirebase';
+import { myFirebase} from '../../Config/MyFirebase';
 
 import './Home.css'
 

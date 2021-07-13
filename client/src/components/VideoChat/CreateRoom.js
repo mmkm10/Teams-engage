@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { v1 as uuid } from "uuid";
 import "./video.css";
 
-const formReducer = (state, event) => {
-    return {
-        ...state,
-        [event.name]: event.value
-    }
-}
+
 const CreateRoom = (props) => {
     function create() {
         const id = uuid();

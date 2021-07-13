@@ -2,7 +2,6 @@ import React from "react";
 import "./Home.css"
 import Login from './Login';
 
-import Segment from '../Segment/segment'
 import {myFirebase, myFirestore} from '../../Config/MyFirebase'
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -12,7 +11,7 @@ const auth=myFirebase.auth();
 
 const Home = (props) => {
     function logg() {
-        props.history.push(`/Login`);
+        props.history.push(`/Login`);         //For login as guest button call
     }
     const [user] =useAuthState(auth);
 

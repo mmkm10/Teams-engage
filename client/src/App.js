@@ -12,7 +12,7 @@ import chat from "./components/Chatroom/Chat";
 import "./App.css";
 
 
-
+// Defining Routes per component
 function App() {
   return (
     <BrowserRouter>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 
-import { myFirebase, myFirestore } from '../../Config/MyFirebase'
+import { myFirebase } from '../../Config/MyFirebase'
 
 const auth=myFirebase.auth();
 

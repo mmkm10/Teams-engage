@@ -9,13 +9,13 @@ const auth = myFirebase.auth();
 
 const Login = (props) => {
     function create() {
-        props.history.push(`/room`);
+        props.history.push(`/room`);    //create video-room component
     }
     function chatr() {
-        props.history.push('/chatroom')
+        props.history.push('/chatroom') //chat app component
     }
     function Profile() {
-        props.history.push('/profile')
+        props.history.push('/profile')  //profile component
     }
     const [user] = useAuthState(auth);
 
