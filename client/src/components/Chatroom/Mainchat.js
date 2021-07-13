@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import './Chat.css'
-import Chat from './Chat';
 
 export default function ChatRoom() {
     const [room, setRoom] = useState('');

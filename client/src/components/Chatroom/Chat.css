@@ -50,7 +50,7 @@ main {
     background: #6649b8;
   }
   
-  form {
+  .form-send {
     height: 10vh;
     position: fixed;
     bottom: 0;
@@ -60,7 +60,16 @@ main {
     display: flex;
     font-size: 1.5rem;
   }
-  
+  .form-chat-join {
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(24, 23, 23);
+    width: 100%;
+    max-width: 728px;
+    display: flex;
+    font-size: 1.5rem;
+  }
   form button {
     width: 20%;
     background-color: rgb(56, 56, 143);

@@ -2,15 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import Peer from "simple-peer";
 import styled from "styled-components";
-import './video.css';
 
-
+const Container = styled.div`
+    padding: 60px;
+    display: flex;
+    height: 80vh;
+    width: 80%;
+    flex-wrap: wrap;
+`;
 
 const StyledVideo = styled.video`
-    height:400px;
-    width 700px;
-    justify-content:centre;
-
+    height: 40%;
+    width: 50%;
 `;
 
 const Video = (props) => {
@@ -19,7 +22,6 @@ const Video = (props) => {
     useEffect(() => {
         props.peer.on("stream", stream => {
             ref.current.srcObject = stream;
-
         })
     }, []);
 
@@ -29,28 +31,25 @@ const Video = (props) => {
 }
 
 
-const Constraints = {
-    video: true,
-    audio: true
-}
-
+const videoConstraints = {
+    height: window.innerHeight / 2,
+    width: window.innerWidth / 2
+};
 
 const Room = (props) => {
     const [peers, setPeers] = useState([]);
-   // const socketServer=io("")
     const socketRef = useRef();
     const userVideo = useRef();
     const peersRef = useRef([]);
     const roomID = props.match.params.roomID;
     const [cam, setCam] = useState(true);
     const [mute, setMute] = useState(true);
+
     useEffect(() => {
-        socketRef.current = io.connect("https://teams-engage.herokuapp.com/");
-        navigator.mediaDevices.getUserMedia(Constraints).then(stream => {
+        socketRef.current = io.connect("http://localhost:8000");
+        navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: true }).then(stream => {
             userVideo.current.srcObject = stream;
-
             socketRef.current.emit("join room", roomID);
-
             socketRef.current.on("all users", users => {
                 const peers = [];
                 users.forEach(userID => {
@@ -59,7 +58,6 @@ const Room = (props) => {
                         peerID: userID,
                         peer,
                     })
-
                     peers.push(peer);
                 })
                 setPeers(peers);
@@ -108,6 +106,7 @@ const Room = (props) => {
         })
 
         peer.signal(incomingSignal);
+
         return peer;
     }
 
@@ -122,26 +121,30 @@ const Room = (props) => {
         setMute(!mute);
     }
 
-
     return (
         <>
-            <div className="Container">
+            <Container>
+            <div className="vid-button">
+                <button className={cam ? "mute" : "unmute"} onClick={() => (muteCam())}>Video off</button>
+                <button className={mute ? "mute" : "unmute"} onClick={() => (muteAudio())}>Mute</button>
+                <button className="mute" onClick={() => props.history.push(`/Login`)}>End</button>
+            </div>
                 <StyledVideo muted ref={userVideo} autoPlay playsInline />
-                    {peers.map((peer, index) => {
-                        return (
-                            <div> <Video key={index} peer={peer} /> </div>
-                        );
-                    })}
-                </div>
+                {peers.map((peer, index) => {
+                    return (
+                        <Video key={index} peer={peer} />
+                    );
+                })}
 
-
-
-            <button className={cam ? "mute" : "unmute"} onClick={() => (muteCam())}>Video off</button>
-            <button className={mute ? "mute" : "unmute"} onClick={() => (muteAudio())}>Mute</button>
-            <button className="mute" onClick={() => props.history.push(`/Login`)}>End</button>
+            </Container>
+            <alert>Send this link to your friends to join: {window.location.href}</alert>
 
         </>
     );
 };
 
 export default Room;
+
+
+
+

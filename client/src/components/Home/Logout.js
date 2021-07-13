@@ -9,7 +9,7 @@ const Logout = () => {
     const history=useHistory();
 
     return auth.currentUser && (
-        <button className="sign-out" onClick={() => auth.signOut() & history.push('/')}>Sign Out</button>
+        <button className="sign-out" onClick={() => auth.signOut() & history.push("/")}>Sign Out</button>
     )
 
 }

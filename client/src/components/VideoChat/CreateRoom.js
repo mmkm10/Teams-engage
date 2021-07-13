@@ -1,40 +1,37 @@
-import React, {useReducer} from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { v1 as uuid } from "uuid";
 import "./video.css";
 
 const formReducer = (state, event) => {
     return {
-      ...state,
-      [event.name]: event.value
+        ...state,
+        [event.name]: event.value
     }
-   }
+}
 const CreateRoom = (props) => {
     function create() {
         const id = uuid();
         props.history.push(`/room/${id}`);
     }
-    const openInNewTab = (url) => {
-        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-        if (newWindow) newWindow.opener = null
-    }
-    const [formData, setFormData] = useReducer(formReducer, {});
 
-    const handleChange = event => {
-        setFormData({
-          name: event.target.name,
-          value: event.target.value,
-        });
-      }
+    const [formData, setFormData] = useState('');
+
+
+
     return (
-        <div id="BTN">
-            <ul> <button className="chat-button" onClick={create}>Create room</button> </ul>
-            <form>
-                <ul>
-                    <input  name="link" ></input>
-                    <button type="submit" className="chat-button" onClick={() => openInNewTab({handleChange})} >Enter Link</button>
+            <div className="BTN">
+                <ul> <button className="enter-button" onClick={create}>Create room</button> </ul>
+                <ul>   <form >
+                    <button type="submit" className="enter-button"  >Enter Room</button>
+
+                    <input className="link-input" placeholder="Room Code..." type="text" onChange={(event) => setFormData(event.target.value)} />
+                    <Link onClick={e => (!formData) ? e.preventDefault() : null} to={`/room/${formData}`}>
+
+                    </Link>
+                </form>
                 </ul>
-            </form>
-        </div>
+            </div>
     );
 };
 

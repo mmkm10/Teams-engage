@@ -1,9 +1,10 @@
-#BTN{
-    margin-left: 1000px;
-    margin-top: 200px;
+
+.BTN{
+    margin-left: 600px;
+    margin-top: 400px;
 
 }
-.chat-button {
+.enter-button {
     color: #fff !important;
     text-transform: uppercase;
     text-decoration: none;
@@ -15,46 +16,40 @@
     width: 20%;
     margin-left: 30px;
 }
+.link-input{
+    width: 20%;
+}
 .mute {
-    display: inline-block;
-    justify-self: center;
-    text-align: right;
+    color: black;
     background-color: wheat;
-    height:50px;
-    width: 80px;
-    margin-left: 20px;
+    height:60px;
+    width: 90px;
+    border-radius: 30px;
+    margin-bottom: 10px;
 }
 
 .unmute{
-    display: inline-block;
 
     background-color: red;
-    height:50px;
-    width: 80px;
-    background-position-x: 100px;
-    margin-left: 20px;
+    height:60px;
+    width: 90px;
+    border-radius: 30px;
+
+    margin-bottom: 10px;
 
 }
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: 80vh 80vh;
-    grid-gap: 10px;
 
-  }
   
-  .grid-container > div {
-    text-align: center;
-    padding: 40px 0;
-    font-size: 30px;
-    transform: scale(150%);
-
-  }
 .Container {
     padding: 20px;
     height: 40vh;
     width: 50vw;
     margin-left: 380px;
 }
+.vid-button{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
 
+}
 
