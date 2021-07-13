@@ -12,5 +12,20 @@ Note that, a guest can only access video chat feature. For security purposes, th
 
 Demo : **[here](https://engage-29989.web.app/)**
 
+### Installation
+ git clone
+ 
+ #### for server side
+ cd server
+ npm i
+ nodemon server.js (will run at http://localhost:8000)
+ ##### for client-side
+ cd client
+ npm i
+ npm start
+ then check https:/localhost:3000
+ 
+ 
+
 ### Preview
 
