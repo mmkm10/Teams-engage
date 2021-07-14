@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import io from "socket.io-client";
 import Peer from "simple-peer";
+import io from "socket.io-client";
 import styled from "styled-components";
 
-const Container = styled.div`
+const VideoContainer = styled.div`
     padding: 60px;
     display: flex;
     height: 80vh;
@@ -11,7 +11,7 @@ const Container = styled.div`
     flex-wrap: wrap;
 `;
 
-const StyledVideo = styled.video`
+const VideoDisplay = styled.video`
     height: 40%;
     width: 50%;
 `;
@@ -26,14 +26,14 @@ const Video = (props) => {
     }, []);
 
     return (
-        <StyledVideo playsInline autoPlay ref={ref} />
+        <VideoDisplay playsInline autoPlay ref={ref} />
     );
 }
 
 
 const videoConstraints = {
-    height: window.innerHeight / 2,
-    width: window.innerWidth / 2
+    height: window.innerHeight / 4,
+    width: window.innerWidth / 4
 };
 
 const Room = (props) => {
@@ -46,14 +46,14 @@ const Room = (props) => {
     const [mute, setMute] = useState(true);
 
     useEffect(() => {
-        socketRef.current = io.connect("http://localhost:8000");
+        socketRef.current = io.connect("http://localhost:8000");                            //io connection
         navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: true }).then(stream => {
             userVideo.current.srcObject = stream;
-            socketRef.current.emit("join room", roomID);
+            socketRef.current.emit("join room", roomID);                                    //socket emit
             socketRef.current.on("all users", users => {
-                const peers = [];
+                const peers = [];                                                           //peer mesh
                 users.forEach(userID => {
-                    const peer = createPeer(userID, socketRef.current.id, stream);
+                    const peer = createPeer(userID, socketRef.current.id, stream);          //each peer
                     peersRef.current.push({
                         peerID: userID,
                         peer,
@@ -80,7 +80,7 @@ const Room = (props) => {
         })
     }, []);
 
-    function createPeer(userToSignal, callerID, stream) {
+    function createPeer(userToSignal, callerID, stream) {                                   //creating a new peer for the mesh
         const peer = new Peer({
             initiator: true,
             trickle: false,
@@ -94,7 +94,7 @@ const Room = (props) => {
         return peer;
     }
 
-    function addPeer(incomingSignal, callerID, stream) {
+    function addPeer(incomingSignal, callerID, stream) {                                    //Add the new peer
         const peer = new Peer({
             initiator: false,
             trickle: false,
@@ -110,33 +110,33 @@ const Room = (props) => {
         return peer;
     }
 
-    function muteCam() {
+    function muteCam() {                                                                      // Camera off
         userVideo.current.srcObject.getVideoTracks().forEach(track => track.enabled = !track.enabled);
         setCam(!cam);
 
     }
 
-    function muteAudio() {
+    function muteAudio() {                                                                     //Mic off
         userVideo.current.srcObject.getAudioTracks().forEach(track => track.enabled = !track.enabled)
         setMute(!mute);
     }
 
     return (
         <>
-            <Container>
-            <div className="vid-button">
-                <button className={cam ? "mute" : "unmute"} onClick={() => (muteCam())}>Video off</button>
-                <button className={mute ? "mute" : "unmute"} onClick={() => (muteAudio())}>Mute</button>
-                <button className="mute" onClick={() => props.history.push(`/Login`)}>End</button>
-            </div>
-                <StyledVideo muted ref={userVideo} autoPlay playsInline />
+            <VideoContainer>
+                <div className="vid-button">
+                    <button className={cam ? "mute" : "unmute"} onClick={() => (muteCam())}>Video off</button>
+                    <button className={mute ? "mute" : "unmute"} onClick={() => (muteAudio())}>Mute</button>
+                    <button className="mute" onClick={() => props.history.push(`/Login`)}>End</button>      
+                </div>
+                <VideoDisplay muted ref={userVideo} autoPlay playsInline />
                 {peers.map((peer, index) => {
                     return (
                         <Video key={index} peer={peer} />
                     );
                 })}
 
-            </Container>
+            </VideoContainer>
             <alert>Send this link to your friends to join: {window.location.href}</alert>
 
         </>

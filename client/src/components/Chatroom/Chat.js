@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 import './Chat.css';
 import Popup from './popup';
 
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { myFirebase, myFirestore } from '../../Config/MyFirebase';
@@ -54,7 +53,7 @@ function ChatRoom() {
 
   const [messages] = useCollectionData(query, { idField: 'id' });
 
-  const [formValue, setFormValue] = useState('');
+  const [inputMsg, setInputMsg] = useState('');                   //For input
 
 
   const sendMessage = async (e) => {
@@ -62,15 +61,15 @@ function ChatRoom() {
 
     const { uid, photoURL } = auth.currentUser;
 
-    await messagesRef.add({
-      text: formValue,
+    await messagesRef.add({                                       //messages details added
+      text: inputMsg,
       room: window.location.href,
       createdAt: myFirebase.firestore.FieldValue.serverTimestamp(),
       uid,
       photoURL
     })
 
-    setFormValue('');
+    setInputMsg('');
     userRef.current.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -85,9 +84,9 @@ function ChatRoom() {
 
     <form className="form-send" onSubmit={sendMessage}>
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Type.." />
+      <input value={inputMsg} onChange={(e) => setInputMsg(e.target.value)} placeholder="Type.." />       
 
-      <button type="submit" disabled={!formValue}>SEND!</button>
+      <button type="submit" disabled={!inputMsg}>SEND!</button>
 
     </form>
   </>)

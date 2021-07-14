@@ -6,8 +6,8 @@ import "./video.css";
 
 const CreateRoom = (props) => {
     function create() {
-        const id = uuid();
-        props.history.push(`/room/${id}`);
+        const id = uuid();                              //unique id for room
+        props.history.push(`/room/${id}`);              
     }
 
     const [formData, setFormData] = useState('');

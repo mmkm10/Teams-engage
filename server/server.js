@@ -9,13 +9,13 @@ const io = socket(server);
 
 const users = {};
 
-const socketToRoom = {};
+const socketRoom = {};
 
-io.on('connection', socket => {
+io.on('connection', socket => {              //socket connection
     socket.on("join room", roomID => {
         if (users[roomID]) {
             const length = users[roomID].length;
-            if (length === 4) {
+            if (length === 5) {
                 socket.emit("room full");
                 return;
             }
@@ -23,8 +23,8 @@ io.on('connection', socket => {
         } else {
             users[roomID] = [socket.id];
         }
-        socketToRoom[socket.id] = roomID;
-        const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
+        socketRoom[socket.id] = roomID;
+        const usersInThisRoom = users[roomID].filter(id => id !== socket.id); //users 
 
         socket.emit("all users", usersInThisRoom);
     });
@@ -37,8 +37,8 @@ io.on('connection', socket => {
         io.to(payload.callerID).emit('receiving returned signal', { signal: payload.signal, id: socket.id });
     });
 
-    socket.on('disconnect', () => {
-        const roomID = socketToRoom[socket.id];
+    socket.on('disconnect', () => {                             //disconnect
+        const roomID = socketRoom[socket.id];
         let room = users[roomID];
         if (room) {
             room = room.filter(id => id !== socket.id);
